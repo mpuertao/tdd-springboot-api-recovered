@@ -8,3 +8,6 @@ Precondiciones:
       https://medium.com/@LondonAppBrewery/how-to-download-install-mongodb-on-windows-4ee4b3493514
       
 Luego de tener MongoDB corriendo, pueden ejecutar la aplicación sobre el puerto: 9010
+
+Actualización:
+- Se agrega BD embebida a modo de pruebas, si desea persistencia de los datos despues de detener el servicio debe realizar la instalación de MongoDB.
