@@ -20,4 +20,4 @@ jobs:
     - name: Permisos Admin gradlew
       run: chmod +x gradlew
     - name: Build Gradle
-      run: ./gradlew clean build jacocoRootReport --info
+      run: ./gradlew clean build --info
