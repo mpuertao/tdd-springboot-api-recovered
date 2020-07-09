@@ -1,5 +1,6 @@
 package com.covid19.recovereds;
 
+import com.covid19.recovereds.exceptionhandling.exceptions.DataBaseEmptyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +16,9 @@ public class RecoveredService {
 
 
     public List<Recovered> retieveAllrecovereds() {
-        return recoveredRepository.findAll();
+        List<Recovered> recoveredList = recoveredRepository.findAll();
+        if (recoveredList.isEmpty()) throw new DataBaseEmptyException();
+        return recoveredList;
     }
 
     public Recovered retrieveRecoveredById(int id) {
