@@ -20,8 +20,10 @@ public class PreloadDatabase {
         return args -> {
             recoveredRepository.deleteAll();
             log.info("Precargando data: " + recoveredRepository.save(Recovered.builder().id(1).age(25).name("Pepito Perez").build()));
-            log.info("Precargando data: " + recoveredRepository.save(Recovered.builder().id(2).age(25).name("Pepito Perez").build()));
-
+            log.info("Precargando data: " + recoveredRepository.save(Recovered.builder().id(2).age(18).name("Mario Morales").build()));
+            log.info("Precargando data: " + recoveredRepository.save(Recovered.builder().id(3).age(45).name("Maria Ramirez").build()));
+            log.info("Precargando data: " + recoveredRepository.save(Recovered.builder().id(4).age(36).name("Rosa Garcia").build()));
+            log.info("Precargando data: " + recoveredRepository.save(Recovered.builder().id(5).age(70).name("Jose Javier").build()));
         };
     }
 }
