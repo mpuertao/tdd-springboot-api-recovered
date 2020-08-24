@@ -1,5 +1,6 @@
-package com.covid19.recovereds;
+package com.covid19.recovereds.repository;
 
+import com.covid19.recovereds.entity.Recovered;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

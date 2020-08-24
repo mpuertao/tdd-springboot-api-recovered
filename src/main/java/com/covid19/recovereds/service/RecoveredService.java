@@ -1,11 +1,12 @@
-package com.covid19.recovereds;
+package com.covid19.recovereds.service;
 
+import com.covid19.recovereds.entity.Recovered;
+import com.covid19.recovereds.repository.RecoveredRepository;
 import com.covid19.recovereds.exceptionhandling.exceptions.DataBaseEmptyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,7 +16,7 @@ public class RecoveredService {
     private RecoveredRepository recoveredRepository;
 
 
-    public List<Recovered> retieveAllrecovereds() {
+    public List<Recovered> retrieveAllrecovereds() {
         List<Recovered> recoveredList = recoveredRepository.findAll();
         if (recoveredList.isEmpty()) throw new DataBaseEmptyException();
         return recoveredList;
@@ -33,5 +34,19 @@ public class RecoveredService {
     @Transactional
     public Recovered createRecovered(Recovered recovered) {
         return recoveredRepository.save(recovered);
+    }
+
+    @Transactional
+    public Recovered updateRecovered(Recovered recovered) {
+        return recoveredRepository.save(recovered);
+    }
+
+    @Transactional
+    public void deleteRecovered(int id) {
+        recoveredRepository.deleteById(id);
+    }
+
+    public boolean existsById(int id) {
+        return recoveredRepository.existsById(id);
     }
 }

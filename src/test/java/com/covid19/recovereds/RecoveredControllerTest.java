@@ -1,6 +1,9 @@
 package com.covid19.recovereds;
 
+import com.covid19.recovereds.controller.RecoveredController;
+import com.covid19.recovereds.entity.Recovered;
 import com.covid19.recovereds.exceptionhandling.exceptions.DataBaseEmptyException;
+import com.covid19.recovereds.service.RecoveredService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,7 +40,7 @@ class RecoveredControllerTest {
 
     @Test
     @DisplayName("Prueba que nos permite validar respuesta exitosa para el controlador cuando consultan por todos los recuperados")
-    void givenrRecoveredWhenFindAllThenResponseOk() throws Exception {
+    void givenRecoveredWhenFindAllThenResponseOk() throws Exception {
         //Arrange
         List<Recovered> recovereds = new ArrayList<>();
         recovereds.add(new Recovered(1, "Manuela", 25));
@@ -45,7 +48,7 @@ class RecoveredControllerTest {
         recovereds.add(new Recovered(3, "Danny Barrientos", 40));
 
         //Act
-        when(recordService.retieveAllrecovereds()).thenReturn(recovereds);
+        when(recordService.retrieveAllrecovereds()).thenReturn(recovereds);
 
         //Assert
         mockMvc.perform(
@@ -58,7 +61,7 @@ class RecoveredControllerTest {
     @Test
     @DisplayName("Prueba q nos permite validar respuesta ok por recuperado por id")
     void givenRecoveredWhenFindByIdThenResponseOk() throws Exception {
-        Recovered recovered = new Recovered(4, "Lina Granados", 28);
+        Recovered recovered = new Recovered(4, "Lina", 28);
         when(recordService.retrieveRecoveredById(4)).thenReturn(recovered);
         mockMvc.perform(get("/recovered/{id}", 4)
                 .contentType("application/json"))
@@ -69,7 +72,7 @@ class RecoveredControllerTest {
     @Test
     @DisplayName("Prueba que nos permite validar el copntrolador cuando se crea un recuperado")
     void givenRecoveredWhenCreateRegisterThenReturnsOk() throws Exception {
-        Recovered recovered = new Recovered(5, "Carlos Armando Oliva", 58);
+        Recovered recovered = new Recovered(5, "Carlos", 58);
         when(recordService.createRecovered(recovered)).thenReturn(recovered);
         mockMvc.perform(
                 post("/recovered")
@@ -94,7 +97,7 @@ class RecoveredControllerTest {
     @DisplayName("Prueba que nos permite validar el error de que no existe ningun usuario creado")
     void givenRecoveredDBIsEmpty() throws Exception{
         Recovered recovered = new Recovered();
-        when(recordService.retieveAllrecovereds()).thenThrow(new DataBaseEmptyException());
+        when(recordService.retrieveAllrecovereds()).thenThrow(new DataBaseEmptyException());
         MockHttpServletResponse response = mockMvc.perform(get("/recovered")
                 .contentType("application/json"))
                 .andReturn().getResponse();

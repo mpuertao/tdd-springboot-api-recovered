@@ -1,6 +1,9 @@
 package com.covid19.recovereds;
 
 
+import com.covid19.recovereds.entity.Recovered;
+import com.covid19.recovereds.repository.RecoveredRepository;
+import com.covid19.recovereds.service.RecoveredService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +37,7 @@ public class RecoveredServiceTest {
 
         //Act
         when(recoveredRepository.findAll()).thenReturn(recovereds);
-        List<Recovered> result = recoveredService.retieveAllrecovereds();
+        List<Recovered> result = recoveredService.retrieveAllrecovereds();
 
         //Assert
         assertEquals(recovereds.get(0), result.get(0));
